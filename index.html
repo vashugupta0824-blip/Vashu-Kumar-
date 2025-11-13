@@ -1,115 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Khatarnak Login • Vashu</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vashu • Designer & Web Dev</title>
+  <meta name="description" content="Vashu — Modern portfolio, projects, skills, contact. Dark neon theme." />
+  <meta name="theme-color" content="#04102a">
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Poppins, sans-serif;
-        background: radial-gradient(circle at 20% 20%, #0a1224, #000);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#040617;
+      --Card:#071426;
+      --neon:#00e7ff;
+      --neon2:#7c3aed;
+      --muted:#9fb3d9;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
     }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Poppins,system-ui,Segoe UI,Arial;background:
+      radial-gradient(800px 400px at 10% 10%, rgba(124,58,237,0.04), transparent 12%),
+      radial-gradient(600px 300px at 90% 90%, rgba(0,231,255,0.03), transparent 12%),
+      var(--bg1); color:#eaf6ff; -webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:92%;max-width:1200px;margin:0 auto;padding:28px 0}
 
-    .box {
-        background: rgba(255,255,255,0.05);
-        padding: 40px 30px;
-        border-radius: 20px;
-        width: 90%;
-        max-width: 400px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 0 25px rgba(0,255,255,0.2);
-        text-align: center;
-    }
+    /* NAV */
+    header{position:sticky;top:12px;z-index:40}
+    .nav{display:flex;align-items:center;gap:18px;justify-content:space-between;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .mark{height:44px;width:44px;border-radius:10px;background:linear-gradient(135deg,var(--neon2),var(--neon));display:flex;align-items:center;justify-content:center;font-weight:800;color:#001}
+    .brand h3{margin:0;font-size:18px}
+    .menu{display:flex;gap:12px;align-items:center}
+    .menu a{padding:8px 12px;border-radius:8px;font-weight:600;color:rgba(255,255,255,0.9)}
+    .menu a:hover{background:rgba(255,255,255,0.03)}
 
-    h1 {
-        margin-bottom: 10px;
-        font-size: 28px;
-        letter-spacing: 1px;
-    }
+    /* HERO */
+    .hero{display:flex;gap:28px;align-items:center;margin-top:20px}
+    .hero-left{flex:1;min-width:260px}
+    .hero h1{font-size:36px;margin:0 0 12px;line-height:1.02}
+    .lead{color:var(--muted);margin-bottom:16px;font-size:16px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer;border:0}
+    .btn-primary{background:linear-gradient(90deg,var(--neon),var(--neon2));color:#001}
+    .btn-ghost{background:transparent;color:var(--neon);border:1px solid rgba(0,231,255,0.12)}
 
-    p {
-        margin-top: -5px;
-        color: #b6c8f8;
-        font-size: 14px;
-    }
+    .hero-right{width:360px;max-width:40%;min-width:220px}
+    .hero-card{background:linear-gradient(180deg,var(--glass),var(--glass-2));padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+    .profile-photo{width:100%;height:320px;border-radius:10px;object-fit:cover;border:4px solid #0b1220;box-shadow:0 12px 40px rgba(2,6,23,0.6)}
+    .quick{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.02);padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}
 
-    input {
-        width: 100%;
-        padding: 12px;
-        margin-top: 18px;
-        border-radius: 10px;
-        border: none;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 16px;
-        outline: none;
-    }
+    /* SECTIONS */
+    section{margin-top:20px}
+    .card{background:linear-gradient(180deg,var(--glass),var(--glass-2));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.4)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
 
-    button {
-        width: 100%;
-        padding: 13px;
-        margin-top: 25px;
-        background: linear-gradient(90deg, #00eaff, #009dff);
-        border: none;
-        border-radius: 10px;
-        color: black;
-        font-weight: 700;
-        font-size: 18px;
-        cursor: pointer;
-        box-shadow: 0 0 15px rgba(0,217,255,0.5);
-    }
+    /* SKILLS */
+    .skill{margin-bottom:12px}
+    .skill .label{display:flex;justify-content:space-between;font-weight:700}
+    .bar{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;margin-top:6px;overflow:hidden}
+    .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--neon),var(--neon2));border-radius:999px;width:40%}
 
-    button:hover {
-        transform: scale(1.02);
-    }
+    /* PROJECT CARD */
+    .proj-img{width:100%;height:140px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+    .proj-title{font-weight:800;margin-top:10px}
+    .proj-desc{color:var(--muted);font-size:14px;margin-top:6px}
 
-    .msg {
-        margin-top: 18px;
-        font-size: 14px;
-        color: #ff7c7c;
-    }
-</style>
+    /* GALLERY */
+    .gallery{display:flex;gap:8px;flex-wrap:wrap}
+    .gallery img{width:calc(33% - 6px);border-radius:8px;height:120px;object-fit:cover;border:1px solid rgba(255,255,255,0.02)}
+    @media(max-width:800px){.gallery img{width:48%}}
 
+    /* TESTIMONIALS */
+    .test{display:flex;gap:12px;flex-wrap:wrap}
+    .test .tcard{padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);min-width:220px}
+
+    /* CONTACT */
+    .contact-row{display:grid;grid-template-columns:1fr 340px;gap:18px}
+    @media(max-width:880px){.hero{flex-direction:column}.hero-right{max-width:100%;width:100%}.contact-row{grid-template-columns:1fr}}
+
+    /* FOOTER */
+    footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px;padding:16px}
+    .topBtn{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--neon),var(--neon2));border:0;padding:12px;border-radius:999px;box-shadow:0 8px 30px rgba(2,6,23,0.6);cursor:pointer}
+    /* small */
+    . muted { color: var(--muted); }
+  </style>
 </head>
 <body>
 
-<div class="box">
-    <h1>Login</h1>
-    <p>Premium Secure Login • Vashu</p>
+  <div class="wrap">
 
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
+    <!-- NAV -->
+    <header>
+      <nav class="nav">
+        <div class="brand">
+          <div class="mark">V</div>
+          <div>
+            <h3>Vashu</h3>
+            <div style="font-size:12px;color:var(--muted)">Web Designer • Developer</div>
+          </div>
+        </div>
 
-    <button onclick="checkLogin()">Login</button>
+        <div class="menu">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
 
-    <div id="message" class="msg"></div>
-</div>
+    <!-- HERO -->
+    <main id="home" class="hero">
+      <div class="hero-left">
+        <h1>Designing <span style="background:linear-gradient(90deg,var(--neon),var(--neon2));-webkit-background-clip:text;color:transparent">beautiful, khatarnak</span> experiences — that convert.</h1>
+        <p class="lead">Main web development aur UI/UX design me specialize karta hoon. Simple code, clean design, aur blazing performance — sab ek sath.</p>
 
-<script>
-function checkLogin() {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+        <div class="cta">
+          <a class="btn btn-primary" href="#projects">Mere Projects</a>
+          <a class="btn btn-ghost" href="#contact">Hire Me</a>
+        </div>
 
-    // Yahi par tum apna secret username/password rakh sakte ho
-    let realUser = "vashu";
-    let realPass = "12345";
+        <div style="margin-top:18px" class="chip-row">
+          <div class="chip">Full-stack</div>
+          <div class="chip">Responsive</div>
+          <div class="chip">Performance</div>
+        </div>
 
-    if (user === realUser && pass === realPass) {
-        document.getElementById("message").style.color = "#8cff8c";
-        document.getElementById("message").innerHTML = "Login Successful ✔";
-    } else {
-        document.getElementById("message").innerHTML = "Wrong username or password ❌";
+        <div style="margin-top:18px" class="card">
+          <div style="display:flex;gap:12px;align-items:center">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500&auto=format&fit=crop" alt="code" style="width:90px;height:70px;object-fit:cover;border-radius:8px">
+            <div>
+              <div style="font-weight:800">Fast, maintainable code</div>
+              <div style="color:var(--muted);font-size:13px">Clean structure, comments, and reusable components.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="hero-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&crop=faces" alt="profile">
+          <div class="quick">
+            <div class="chip">HTML</div>
+            <div class="chip">CSS</div>
+            <div class="chip">JavaScript</div>
+            <div class="chip">React</div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <a class="btn btn-primary" href="#contact">Let's talk</a>
+            <a class="btn btn-ghost" href="#projects">See work</a>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- ABOUT -->
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <p class="muted">Main Vashu — ek passionate web developer & designer. Mujhe complex problems ko simple design aur optimized code ke through solve karna pasand hai. Main modern JS frameworks, responsive design, aur accessibility follow karta hoon.</p>
+
+          <ul style="margin-top:12px;color:var(--muted);line-height:1.6">
+            <li>5+ projects: portfolio, e-commerce, dashboards</li>
+            <li>Focus on performance, accessibility & SEO</li>
+            <li>Strong with HTML, CSS, JS, React, Firebase</li>
+          </ul>
+        </div>
+
+        <div style="width:380px">
+          <h3 style="margin:0 0 8px">Skills</h3>
+          <div class="skill"><div class="label">HTML <span>95%</span></div><div class="bar"><i style="width:95%"></i></div></div>
+          <div class="skill"><div class="label">CSS / Design <span>92%</span></div><div class="bar"><i style="width:92%"></i></div></div>
+          <div class="skill"><div class="label">JavaScript <span>86%</span></div><div class="bar"><i style="width:86%"></i></div></div>
+          <div class="skill"><div class="label">React <span>80%</span></div><div class="bar"><i style="width:80%"></i></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 style="margin-bottom:8px">Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <img class="proj-img" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="proj-title">Portfolio Website</div>
+          <div class="proj-desc">A modern responsive portfolio with animations and CMS-free deployment.</div>
+        </div>
+
+        <div class="card">
+          <img class="proj-img" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="proj-title">To-Do App (React)</div>
+          <div class="proj-desc">LocalStorage backed, drag & drop, filters, and theming.</div>
+        </div>
+
+        <div class="card">
+          <img class="proj-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="proj-title">E-commerce Demo</div>
+          <div class="proj-desc">Product pages, cart, and mock checkout flow.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="card">
+      <h2>Gallery / Screenshots</h2>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1502882707388-1c6a0b3f3f3e?q=80&w=1200&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="">
+        <img src="https://images.unsplash.com/photo-1523475496153-3d6cc0ac0f17?q=80&w=1200&auto=format&fit=crop" alt="">
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="card">
+      <h2>Testimonials</h2>
+      <div class="test">
+        <div class="tcard">
+          <strong>Priya</strong>
+          <p class="muted" style="margin-top:6px">“Vashu ne hamare product page ko redesign kiya — conversion badh gaya.”</p>
+        </div>
+        <div class="tcard">
+          <strong>Rohan</strong>
+          <p class="muted" style="margin-top:6px">“Fast turnaround and clean code. Highly recommended.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <div class="contact-row">
+        <div>
+          <p class="muted">Interested in working together? Fill the form — this is front-end demo only (no backend). Replace action if you add backend.</p>
+
+          <form id="contactForm">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <input name="name" placeholder="Your name" style="flex:1;padding:10px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:inherit;margin-bottom:8px">
+              <input name="email" placeholder="Email" style="flex:1;padding:10px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:inherit;margin-bottom:8px">
+            </div>
+            <textarea name="message" placeholder="Message" style="width:100%;height:110px;padding:10px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:inherit;margin-top:8px"></textarea>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <button type="button" class="btn btn-primary" onclick="fakeSubmit()">Send message</button>
+              <button type="reset" class="btn btn-ghost">Reset</button>
+            </div>
+            <div id="formMsg" style="margin-top:10px;color:var(--muted)"></div>
+          </form>
+        </div>
+
+        <aside style="padding:12px">
+          <div style="font-weight:800">Contact Info</div>
+          <div style="color:var(--muted);margin-top:8px">Email: <strong>vashu@example.com</strong></div>
+          <div style="color:var(--muted)">Phone: <strong>+91 9xxxxxxxxx</strong></div>
+          <div style="margin-top:14px;color:var(--muted)">Location: India</div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="muted">© <span id="year"></span> Vashu — Built with ❤️ • Dark Neon Portfolio</div>
+    </footer>
+
+  </div>
+
+  <button class="topBtn" id="topBtn" title="Back to top" style="display:none">↑</button>
+
+  <script>
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',(e)=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      })
+    });
+
+    // fake contact submit
+    function fakeSubmit(){
+      const formMsg = document.getElementById('formMsg');
+      formMsg.textContent = 'Sending…';
+      setTimeout(()=>{ formMsg.textContent = 'Message sent! I will contact you soon.' },900);
     }
-}
-</script>
 
+    // show top button
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY>300){ topBtn.style.display='block' } else topBtn.style.display='none';
+    });
+    topBtn.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+
+    // small animation: animate skill bars (use IntersectionObserver)
+    const bars = document.querySelectorAll('.bar > i');
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          en.target.style.width = en.target.getAttribute('style') || en.target.style.width;
+        }
+      })
+    }, {threshold:0.4});
+    bars.forEach(b=> io.observe(b));
+
+  </script>
 </body>
-</html>
+    </html>
