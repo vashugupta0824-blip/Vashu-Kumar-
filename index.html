@@ -1,148 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hi">
 <head>
   <meta charset="utf-8" />
-  <title>Vashu • Web Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vashu • Khatarnak Login</title>
+  <meta name="description" content="Vashu ka web portfolio — login with Google" />
   <style>
-    /* === INLINE CSS: This ensures your site works without external CSS files === */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Segoe UI", Arial, sans-serif; background: #f5f7fb; color: #222; line-height: 1.5; }
-
-    .wrap { width: 92%; max-width: 1000px; margin: 0 auto; padding: 28px 0; }
-
-    .site-header { background: #0c63d6; color: #fff; position: sticky; top: 0; z-index: 10; padding: 10px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-
-    .header-inner { display: flex; align-items: center; }
-    .logo { font-weight: 700; font-size: 20px; padding-right: 20px; }
-
-    .nav { margin-left: auto; display: flex; gap: 12px; }
-    .nav a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; }
-    .nav a:hover { background: rgba(255,255,255,0.15); }
-
-    .menu-btn { display: none; }
-
-    .hero { background: #fff; margin-top: 16px; border-radius: 12px;
-      padding: 22px; box-shadow: 0 8px 30px rgba(15,30,50,0.06); }
-
-    .hero-inner { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-    .hero-text { flex: 1; min-width: 250px; }
-    .hero-text h1 { font-size: 30px; margin-bottom: 10px; color: #0b54a0; }
-    .lead { margin-bottom: 14px; color: #444; }
-    .accent { color: #0c63d6; }
-
-    .cta-row { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
-    .btn { padding: 10px 18px; border-radius: 8px; text-decoration: none; background: #0c63d6; color: white; font-weight: 500; }
-    .btn.ghost { background: transparent; color: #0c63d6; border: 1px solid #0c63d6; }
-
-    .hero-image img { width: 160px; height: 160px; object-fit: cover;
-      border-radius: 20px; border: 5px solid #fff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-
-    .about, .projects, .contact {
-      background: #fff; margin-top: 16px; border-radius: 12px; padding: 20px;
-      box-shadow: 0 6px 18px rgba(10,20,40,0.05);
+    /* Simple modern "khatarnak" style */
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#ff2d55; --glass: rgba(255,255,255,0.05);
+      --white: #f8fafc;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; font-family:Inter,system-ui,Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, #05263f 0%, transparent 20%),
+                  radial-gradient(900px 400px at 90% 90%, #2b0833 0%, transparent 18%),
+                  var(--bg);
+      color:var(--white);
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
     }
 
-    .skills { list-style: none; display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
-    .skills li { background: #e8f0ff; padding: 6px 12px; border-radius: 8px; color: #0c54bd; }
+    .card{
+      width:100%; max-width:820px; border-radius:16px; padding:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 10px 40px rgba(2,6,23,0.7);
+      display:grid; grid-template-columns: 1fr 420px; gap:24px; align-items:center;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 12px; margin-top: 12px; }
-    .card { padding: 16px; background: #f7fbff; border-radius: 10px; box-shadow: 0 2px 10px rgba(10,20,60,0.05); }
+    .left{padding:8px}
+    h1{margin:6px 0 12px; font-size:34px; color:var(--white)}
+    p.lead{margin:0 0 18px; color: #cbd5e1; line-height:1.45}
 
-    .site-footer { text-align: center; color: #555; padding: 25px 0; margin-top: 20px; }
+    .hero-badges{display:flex; gap:8px; margin-bottom:14px}
+    .badge{background:var(--glass); padding:8px 12px; border-radius:999px; color:#e6eef8; font-weight:600; font-size:13px}
+
+    /* RIGHT SIDE - LOGIN */
+    .right{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px; padding:20px; text-align:center; border:1px solid rgba(255,255,255,0.03)
+    }
+    .logo{
+      height:72px; width:72px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg, #0ea5a4, #06b6d4); color:#042; font-weight:800; font-size:20px;
+      box-shadow:0 6px 18px rgba(6,11,20,0.6);
+      margin-bottom:14px;
+    }
+
+    button.google{
+      display:flex; gap:12px; align-items:center; justify-content:center; width:100%;
+      padding:12px 16px; border-radius:10px; border:0; cursor:pointer; font-weight:700;
+      background: linear-gradient(90deg,#fff,#eef3ff);
+      color:#0b1220; font-size:15px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.6);
+    }
+    .ghost{margin-top:12px; color:#93c5fd; font-size:13px}
+
+    .profile{
+      margin-top:16px; display:none; gap:10px; align-items:center; justify-content:center;
+      flex-direction:column;
+    }
+    .avatar{width:84px; height:84px; border-radius:50%; border:3px solid rgba(255,255,255,0.08); object-fit:cover}
+    .signout{margin-top:10px; background:transparent; color:#ff8da1; border:1px solid rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px; cursor:pointer}
+
+    @media(max-width:880px){
+      .card{grid-template-columns:1fr; padding:18px}
+    }
   </style>
 </head>
-
 <body>
-
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <div class="logo">Vashu</div>
-      <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <div class="card">
+    <div class="left">
+      <div class="hero-badges">
+        <div class="badge">HTML</div>
+        <div class="badge">CSS</div>
+        <div class="badge">JS</div>
+      </div>
+      <h1>Hello! Main Vashu — Secure Login</h1>
+      <p class="lead">Apni website par Google se login karo. Simple, modern aur secure. Kisi bhi user ko Gmail se sign-in karne do.</p>
+      <p style="color:#9fb3d9; margin-top:12px">Portfolio • Projects • Contact</p>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <main>
-    <section id="home" class="hero">
-      <div class="wrap hero-inner">
-        
-        <div class="hero-text">
-          <h1>Hello! Main <span class="accent">Vashu</span> hoon</h1>
-          <p class="lead">Main web development seekh raha hoon — HTML, CSS, aur JavaScript. Yeh meri portfolio-style starter site hai.</p>
-          
-          <div class="cta-row">
-            <a class="btn" href="#projects">Mere Projects</a>
-            <a class="btn ghost" href="#contact">Contact</a>
-          </div>
-        </div>
+    <div class="right">
+      <div class="logo">V</div>
+      <div style="font-weight:700; margin-bottom:6px">Sign in with Google</div>
+      <div style="color:#9fb3d9; font-size:13px; margin-bottom:14px">Fast. Secure. Trusted by Google Auth</div>
 
-        <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1531123414780-f305c9b9b0f9?q=80&w=800&auto=format&fit=crop&crop=faces"
-               alt="Vashu - Profile">
-        </div>
+      <button id="btnGoogle" class="google">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="" style="width:20px;height:20px"/>
+        Continue with Google
+      </button>
 
+      <div class="ghost">No credit card. No personal data stored here.</div>
+
+      <div class="profile" id="profileBox">
+        <img id="avatar" class="avatar" src="" alt="avatar">
+        <div id="name" style="font-weight:700"></div>
+        <div id="email" style="color:#9fb3d9"></div>
+        <button id="signOut" class="signout">Sign out</button>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- ABOUT -->
-    <section id="about" class="wrap about">
-      <h2>About Me</h2>
-      <p>Hi! Main Vashu hoon. Main coding seekh raha hoon aur websites bana raha hoon. Mera goal strong fundamentals build karna aur real projects banana hai.</p>
-
-      <ul class="skills">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>Learning JavaScript</li>
-      </ul>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="wrap projects">
-      <h2>Projects</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Simple HTML Page</h3>
-          <p>Basic headings, lists, and page structure learning.</p>
-        </div>
-        <div class="card">
-          <h3>To-Do App (JS)</h3>
-          <p>JavaScript based task manager.</p>
-        </div>
-        <div class="card">
-          <h3>Portfolio</h3>
-          <p>Small projects collection.</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="wrap contact">
-      <h2>Contact</h2>
-      <p>Email: <strong>vashu@example.com</strong></p>
-      <p>Phone: <strong>+91 9xxxxxxxxx</strong></p>
-      <p style="margin-top:10px;">Agar tu chahe to apni real photo bhej de — main code me replace kar dunga.</p>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <p>© <span id="year"></span> Vashu — Built with ❤️</p>
-  </footer>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    // ---- PASTE FIREBASE CONFIG HERE ----
+    const firebaseConfig = {
+      /* YOUR FIREBASE CONFIG:
+      apiKey: "XXXX",
+      authDomain: "PROJECT-ID.firebaseapp.com",
+      projectId: "PROJECT-ID",
+      storageBucket: "...",
+      messagingSenderId: "...",
+      appId: "..."
+      */
+    };
+    // ------------------------------------
 
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const btn = document.getElementById('btnGoogle');
+    const profileBox = document.getElementById('profileBox');
+    const avatar = document.getElementById('avatar');
+    const nameEl = document.getElementById('name');
+    const emailEl = document.getElementById('email');
+    const signOutBtn = document.getElementById('signOut');
+
+    btn.addEventListener('click', () => {
+      auth.signInWithPopup(provider)
+        .then(result => {
+          const user = result.user;
+          showProfile(user);
+        })
+        .catch(err => {
+          alert('Error: ' + err.message);
+          console.error(err);
+        });
+    });
+
+    signOutBtn.addEventListener('click', () => {
+      auth.signOut().then(()=> {
+        profileBox.style.display = 'none';
+        btn.style.display = 'inline-flex';
+      });
+    });
+
+    auth.onAuthStateChanged(user => {
+      if(user){
+        showProfile(user);
+      } else {
+        profileBox.style.display = 'none';
+        btn.style.display = 'inline-flex';
+      }
+    });
+
+    function showProfile(user){
+      avatar.src = user.photoURL || '';
+      nameEl.textContent = user.displayName || 'No name';
+      emailEl.textContent = user.email || '';
+      profileBox.style.display = 'flex';
+      btn.style.display = 'none';
+    }
+  </script>
 </body>
-  </html>
+</html>
